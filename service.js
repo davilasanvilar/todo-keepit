@@ -31,7 +31,11 @@ function onToggleModal() {
   }
 }
 
+let oldTimeout = null
 function onShowToast(success, text) {
+  if (oldTimeout) {
+    clearTimeout(oldTimeout);
+  }
   const toast = document.getElementById("toast");
   toast.className = "";
   if (success) {
@@ -41,7 +45,8 @@ function onShowToast(success, text) {
   }
   toast.textContent = text;
   toast.classList.add("show-toast");
-  setTimeout(() => {
+
+  oldTimeout = setTimeout(() => {
     toast.classList.remove("show-toast");
   }, 3000);
 }
