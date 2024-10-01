@@ -260,9 +260,18 @@ function onSwitchCompleteTask(id) {
   objectStore.get(id).onsuccess = (e) => {
     const task = e.target.result;
     task.completed = task.completed ? 0 : 1;
-    objectStore.put(task);
+    const updateTask = objectStore.put(task)
+    updateTask.onsuccess = (e) => {
+      onShowToast(true, task.completed ?"Task completed!" : "Task uncompleted");
+      onGetTasks();
+    }
+    updateTask.onerror = (e) => {
+      onShowToast(false, "Error modifying task");
+    }
   }
-  onGetTasks();
+  objectStore.get(id).onerror = (e) => {
+    onShowToast(false, "Error modifying task");
+  }
 }
 
 function onResetFilters() {
