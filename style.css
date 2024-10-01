@@ -134,7 +134,7 @@ textarea::placeholder {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     visibility: hidden;
     justify-content: center;
@@ -160,6 +160,7 @@ visibility: visible !important;
 
 #task-form {
     display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     flex-direction: column;
     padding: 20px;
     width: 100%;
@@ -197,6 +198,7 @@ visibility: visible !important;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .empty-list-element {
@@ -277,6 +279,7 @@ visibility: visible !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     transition: all 0.3s;
+    z-index: 1000;
 }
 
 .show-toast {

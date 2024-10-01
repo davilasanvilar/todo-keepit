@@ -88,7 +88,8 @@ function onEditTask() {
   }
   const objectStore = db.transaction("tasks", "readwrite").objectStore("tasks")
 
-  objectStore.get(id).onsuccess = (e) => {
+  const getTaskRequest = objectStore.get(id)
+  getTaskRequest.onsuccess = (e) => {
     const task = e.target.result;
     task.title = title;
     task.description = description;
@@ -99,6 +100,12 @@ function onEditTask() {
       onGetTasks();
       onToggleModal();
     }
+    updateRequest.onerror = (e) => {
+      onShowToast(false, "Error updating task");
+    }
+  }
+  getTaskRequest.onerror = (e) => {
+    onShowToast(false, "Error updating task");
   }
 
   const task = {
