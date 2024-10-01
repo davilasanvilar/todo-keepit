@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="service.js"></script>
+</head>
+
+<body>
+    <section id="task-section">
+        <div id="top-bar">
+            <label for="filter-title">Filter by title
+                <input type="text" id="filter-title" oninput="onGetTasks()" />
+            </label>
+            <label for="filter-due-date">Filter by date
+                <input type="date" id="filter-due-date" oninput="onGetTasks()" placeholder="Filter by date" />
+            </label>
+            <button id="reset-filters-but" onclick="onResetFilters()">Reset filters</button>
+            <button id="addTaskBut" onclick="onShowAddModal()">Add task</button>
+        </div>
+        <ul id="task-list">
+        </ul>
+    </section>
+    <div id="modal">
+        <article id="task-form">
+            <div id="modal-top-bar">
+                <h2></h2>
+                <button onclick="onToggleModal()"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-x">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg></button>
+            </div>
+            <form onsubmit="onSubmit(event)">
+                <input type="hidden" id="task-id" />
+                <label for="task-title">Title
+                    <input type="text" id="task-title" placeholder="Title of task" />
+                    <span id="title-error" class="error-msg">The title is needed</span>
+                </label>
+                <label for="task-description">Description
+                    <textarea rows="3" id="task-description" placeholder="A description for my task"></textarea>
+                </label>
+                <label for="task-due-date">Due date
+                    <input type="date" id="task-due-date" />
+                </label>
+                <button type="submit">Save</button>
+            </form>
+        </article>
+    </div>
+    <article id="toast"></article>
+</body>
+
+</html>
